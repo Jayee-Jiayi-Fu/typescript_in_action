@@ -170,16 +170,16 @@ let num: number = Fruit.Apple;
 // b = a;
 
 // 父类中含有私有成员，父子类的实例兼容
-class A {
-  constructor() {}
-  private name: string = "";
-}
-class B extends A {}
-let a = new A();
-let b = new B();
+// class A {
+//   constructor() {}
+//   private name: string = "";
+// }
+// class B extends A {}
+// let a = new A();
+// let b = new B();
 
-a = b;
-b = a;
+// a = b;
+// b = a;
 
 // 泛型兼容性
 //==========
