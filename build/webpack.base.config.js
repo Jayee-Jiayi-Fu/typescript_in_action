@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-
+// const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
+const {CheckerPlugin} = require('awesome-typescript-loader')
 module.exports = {
   entry: './src/index.ts',
   output: {
@@ -13,7 +14,14 @@ module.exports = {
       {
         test: /\.tsx?$/i,
         use: [{
-          loader: 'ts-loader'
+					//ts-loader，配合ForkTsCheckerWebpackPlugin 开启新进程检查类型
+					// loader: 'ts-loader',
+
+					// awesome-typescript-loader，配合自带插件 CheckerPlugin 开启新进程检查类型
+					loader:'awesome-typescript-loader',
+					options:{
+						 transpileOnly:true
+					}
         }],
         exclude: /nodule_modules/
       }
@@ -22,6 +30,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/tpl/index.html'
-    })
+		}),
+		// new ForkTsCheckerWebpackPlugin()
+		new CheckerPlugin()
   ]
 }

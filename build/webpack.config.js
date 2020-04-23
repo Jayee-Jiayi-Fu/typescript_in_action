@@ -3,6 +3,10 @@ const devConfig = require("./webpack.dev.config")
 const proConfig = require("./webpack.pro.config")
 const merge = require("webpack-merge")
 
-let config = merge(process.NODE_ENV === 'development' ? devConfig : proConfig)
 
-module.exports = merge(baseConfig, config)
+module.exports = (env,argv)=>{
+
+	console.dir(argv)
+	let config = argv.mode === 'devloqqmpment' ? devConfig : proConfig
+	return merge(baseConfig,config)
+}
